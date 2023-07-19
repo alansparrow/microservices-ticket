@@ -1,8 +1,9 @@
+C:\WINDOWS\system32\drivers\etc\hosts
+
 cd E:\Training\Microservices\ticket
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
-Alias
 Set-Alias k kubectl
 Set-Alias d docker
 Set-Alias skf skaffold
