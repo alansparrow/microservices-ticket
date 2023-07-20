@@ -1,3 +1,10 @@
+/**
+ * Reason to use abstract class:
+ * - Cannot be instantiated
+ * - Used to set up requirements for subclasses
+ * - Do create a Class when translated to JS, 
+ * which means we can use it in 'instanceof' checks!
+ */
 export abstract class CustomError extends Error {
     abstract statusCode: Number;
 
