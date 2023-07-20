@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Password } from "../utilities/password";
 
 // An interface that describes the properties
 // that are required to create a new User
@@ -30,6 +31,19 @@ const userSchema = new mongoose.Schema({
         required: true
     }
 });
+
+/**
+ * If we used an arrow function, the value of 'this' 
+ * would be overriden and would be actually instead equal to 
+ * the context of this entire file as opposed to our user document.
+ */
+userSchema.pre('save', async function(done) {
+    if (this.isModified('password')) {
+        const hashedPassword = await Password.toHash(this.get('password'));
+        this.set('password', hashedPassword);
+    }
+    done();
+})
 
 userSchema.statics.build = (attrs: UserAttrs) => {
     return new User(attrs);
