@@ -16,7 +16,9 @@ app.use(json());
 app.use(
     cookieSession({
         signed: false,
-        secure: true
+        // cookie is only shared when someone is making 
+        // a request to our server via https connection
+        secure: process.env.NODE_ENV !== 'test'
     })
 );
 
