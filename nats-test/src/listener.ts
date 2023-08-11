@@ -1,5 +1,6 @@
-import nats, { Message } from "node-nats-streaming";
+import nats from "node-nats-streaming";
 import { randomBytes } from "crypto";
+import { TicketCreatedListener } from "./events/ticket-created-listener";
 
 console.clear();
 
@@ -15,26 +16,7 @@ client.on("connect", () => {
     process.exit();
   });
 
-  const options = client
-    .subscriptionOptions()
-    .setManualAckMode(true)
-    .setDeliverAllAvailable() // Get all the events that have been emitted in the past.
-    .setDurableName("accounting-service"); // Keep track of all events have gone to this sub for handling offline
-  const sub = client.subscribe(
-    "ticket:created",
-    "queue-group-name", // Not dump durable name even if all of our services restart
-    options
-  );
-
-  sub.on("message", (msg: Message) => {
-    const data = msg.getData();
-
-    if (typeof data === "string") {
-      console.log(`Received event #${msg.getSequence()}, with data: ${data}`);
-    }
-
-    msg.ack();
-  });
+  new TicketCreatedListener(client).listen();
 });
 
 process.on("SIGINT", () => client.close());
