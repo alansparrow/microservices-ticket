@@ -26,6 +26,14 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
+    - image: us.gcr.io/ticket-dev-392622/orders
+      context: orders
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
   # local:
   #   push: false
   googleCloudBuild:
