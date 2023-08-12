@@ -2,7 +2,7 @@ import express from "express";
 import "express-async-errors";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
-import { errorHandler, NotFoundError, currentUser } from "@fuzzyrock/common";
+import { errorHandler, NotFoundError, currentUser, logRequest } from "@fuzzyrock/common";
 import { newOrderRouter } from "./routes/new";
 import { showOrderRouter } from "./routes/show";
 import { indexOrderRouter } from "./routes";
@@ -19,7 +19,10 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
+
 app.use(currentUser);
+
+app.use(logRequest);
 
 app.use(newOrderRouter);
 app.use(showOrderRouter);
