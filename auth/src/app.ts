@@ -8,6 +8,7 @@ import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 import { errorHandler, NotFoundError } from '@fuzzyrock/common';
+import { logRequest } from './log-request';
 
 const app = express();
 app.set('trust proxy', true);
@@ -21,6 +22,7 @@ app.use(
     })
 );
 
+app.use(logRequest);
 app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
