@@ -9,7 +9,7 @@ gcloud components install gke-gcloud-auth-plugin
 gcloud auth login
 
 # forward port
-k port-forward nats-depl-775588555-zqj4x 4222:4222
+k port-forward nats-depl-dfc668fbb-nxhrr 4222:4222
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
