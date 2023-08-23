@@ -4,8 +4,8 @@ import {
   NotAuthorizedError,
   NotFoundError,
   OrderStatus,
+  requireAuth
 } from "@fuzzyrock/common";
-import { requireAuth } from "@fuzzyrock/common";
 import { OrderCancelledPublisher } from "../events/publishers/order-cancelled-publisher";
 import { natsWrapper } from "../nats-wrapper";
 
