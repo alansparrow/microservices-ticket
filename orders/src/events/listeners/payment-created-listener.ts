@@ -7,6 +7,7 @@ import {
 import { Message } from "node-nats-streaming";
 import { queueGroupName } from "./queue-group-name";
 import { Order } from "../../models/order";
+import { OrderUpdatedPublisher } from "../publishers/order-updated-publisher";
 
 export class PaymentCreatedListener extends Listener<PaymentCreatedEvent> {
   subject: Subjects.PaymentCreated = Subjects.PaymentCreated;
@@ -24,7 +25,12 @@ export class PaymentCreatedListener extends Listener<PaymentCreatedEvent> {
       status: OrderStatus.Complete,
     });
     await order.save();
-    // should have order updated event sent
+
+    await new OrderUpdatedPublisher(this.client).publish({
+      id: order.id,
+      status: order.status,
+      version: order.version,
+    });
 
     msg.ack();
   }

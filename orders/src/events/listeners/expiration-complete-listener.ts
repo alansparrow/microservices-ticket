@@ -23,6 +23,7 @@ export class ExpirationCompleteListener extends Listener<ExpirationCompleteEvent
     }
 
     if (order.status === OrderStatus.Complete) {
+      console.log("Order " + order.id + " is paid.");
       return msg.ack();
     }
 

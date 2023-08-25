@@ -38,6 +38,10 @@ router.post(
       throw new BadRequestError("Cannot pay for a cancelled order");
     }
 
+    if (order.status === OrderStatus.Complete) {
+      throw new BadRequestError("Order is already paid");
+    }
+
     const charge = await stripe.charges.create({
       currency: "usd",
       amount: order.price * 100,
