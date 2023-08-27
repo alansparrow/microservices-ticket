@@ -7,8 +7,10 @@ import BuildClient from "../api/build-client";
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <Header currentUser={pageProps.currentUser} />
-      <Component currentUser={currentUser} {...pageProps} />
+      <Header currentUser={currentUser} />
+      <div className="container">
+        <Component currentUser={currentUser} {...pageProps} />
+      </div>
     </div>
   );
 };
