@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: payments
-          image: us.gcr.io/ticket-dev-392622/payments
+          # image: us.gcr.io/ticket-dev-392622/payments
+          image: trungtranwk/payments
           env:
             - name: NATS_CLUSTER_ID
               value: ticket

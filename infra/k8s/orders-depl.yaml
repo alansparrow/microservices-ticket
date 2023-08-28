@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: orders
-          image: us.gcr.io/ticket-dev-392622/orders
+          # image: us.gcr.io/ticket-dev-392622/orders
+          image: trungtranwk/orders
           env:
             - name: NATS_CLUSTER_ID
               value: ticket
