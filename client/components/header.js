@@ -22,7 +22,7 @@ const Header = ({ currentUser }) => {
   return (
     <nav className="navbar navbar-light bt-light">
       <Link className="navbar-brand" href="/">
-        Ticket
+        <h1>Fuzzy Ticket</h1>
       </Link>
       <div className="d-flex justify-content-end">
         <ul className="nav d-flex align-items-center">{links}</ul>
