@@ -1,4 +1,3 @@
-# Master Deployment
 name: deploy-manifests
 
 on:
