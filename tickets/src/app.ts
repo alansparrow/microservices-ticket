@@ -22,7 +22,7 @@ app.use(
     signed: false,
     // cookie is only shared when someone is making
     // a request to our server via https connection
-    secure: process.env.NODE_ENV !== "test",
+    secure: false, // not having HTTPS setup right now
   })
 );
 app.use(currentUser);
