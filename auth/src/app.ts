@@ -7,8 +7,7 @@ import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
-import { errorHandler, NotFoundError } from "@fuzzyrock/common";
-import { logRequest } from "@fuzzyrock/common";
+import { errorHandler, NotFoundError, logRequest } from "@fuzzyrock/common";
 
 const app = express();
 app.set("trust proxy", true);
@@ -18,7 +17,7 @@ app.use(
     signed: false,
     // cookie is only shared when someone is making
     // a request to our server via https connection
-    secure: process.env.NODE_ENV !== "test",
+    secure: false, // not having HTTPS setup right now
   })
 );
 
